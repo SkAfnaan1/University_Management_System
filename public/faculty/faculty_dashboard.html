@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faculty Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    /* Base Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Times New Roman', Times, serif;
+      background-color: #a8a8a8;
+    }
+    /* Header */
+    .header {
+      background-color: #f89040;
+      color: #ffffff;
+      padding: 30px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .header h1 {
+      font-size: 4em;
+      font-family: "Brush Script MT", cursive; 
+      font-style: italic; 
+      color: #000000;
+      text-shadow: 5px 5px white;
+    }
+    /* Sidebar */
+    .sidebar {
+      height: 100%;
+      width: 230px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #4e4e4e;
+      padding-top: 10px;
+    }
+    .sidebar a {
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #ffffff;
+      display: block;
+    }
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+    /* Main Content Area */
+    .main {
+      margin-left: 250px; /* extra space for sidebar */
+      padding: 20px;
+    }
+    /* Container Styles */
+    .container {
+      display: none; /* hidden by default */
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    }
+    /* Specific Containers */
+    #updateMarksContainer {
+      background-color: #b0b6f0;
+    }
+    #timeTableContainer {
+      background-color: #dae0b5;
+    }
+    #infoContainer {
+      background-color: #fba8a8;
+    }
+    #homeContainer {
+      background-color: #ffffff;
+    }
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #000000;
+      color: #fff;
+    }
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #000;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-group button {
+      width: 50%;
+      padding: 10px;
+      background-color: #64eda8;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: large;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      display: block;
+      margin: auto;
+    }
+    .form-group button:hover {
+      background-color: #18ffbe;
+    }
+    /* Notification Styles */
+    .notification {
+      display: none;
+      padding: 10px;
+      margin-top: 20px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .notification.success {
+      color: #155724;
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+    }
+    .notification.error {
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
+    /* Navbar */
+    .navbar {
+      background-color: #000000;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar-logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .navbar-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      font-size: 22px;
+    }
+    .navbar-links li {
+      margin-right: 20px;
+    }
+    .navbar-links li a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .navbar-links li a:hover {
+      color: #2386f0;
+    }
+    .navbar-links li a:active {
+      color: #3cb458;
+    }
+    /* Footer */
+    footer {
+      background-color: #000000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Hogwarts School & College</h1>
+  </div>
+  <header class="navbar">
+    <div class="navbar-logo">College Website</div>
+    <nav>
+      <ul class="navbar-links">
+        <li><a href="#" id="home1">Home</a></li>
+        <li><a href="#" id="updateStudentMarksBtn"><i style="font-size:18px" class="fa">&#xf234;</i> Update Student Marks</a></li>
+        <li><a href="#" id="navMyInfo">My Info</a></li>
+        <li><a href="/" class="logout"><i style="font-size:20px" class="fa">&#xf08b;</i> Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="sidebar">
+    <a href="#" id="home"><i style="font-size:24px" class="fa">&#xf015;</i> Home</a>
+    <a href="#" id="updateStudentMarksBtn"><i style="font-size:18px" class="fa">&#xf234;</i> Update Student Marks</a>
+    <a href="#" id="myTimeTableBtn"><i style="font-size:18px" class="fa">&#xf234;</i> My Time Table</a>
+    <a href="#" id="myInfoBtn"><i style="font-size:18px" class="fa">&#xf0c0;</i> My Info</a>
+  </div>
+  <div class="main">
+    <!-- Update Student Marks Container -->
+    <div id="updateMarksContainer" class="container">
+      <h2>Update Student Marks</h2>
+      <form id="updateMarksForm">
+        <div class="form-group">
+          <label for="studentId">ID:</label>
+          <input type="text" id="studentId" name="studentId" required>
+        </div>
+        <div class="form-group">
+          <label for="subjectKRR">KRR:</label>
+          <input type="text" id="subjectKRR" name="subjectKRR" maxlength="20" required>
+        </div>
+        <div class="form-group">
+          <label for="subjectNLP">NLP:</label>
+          <input type="text" id="subjectNLP" name="subjectNLP" maxlength="20" required>
+        </div>
+        <div class="form-group">
+          <label for="subjectSTM">STM:</label>
+          <input type="text" id="subjectSTM" name="subjectSTM" maxlength="10" required>
+        </div>
+        <div class="form-group">
+          <label for="subjectIOT">IOT:</label>
+          <input type="text" id="subjectIOT" name="subjectIOT" maxlength="20" required>
+        </div>
+        <div class="form-group">
+          <label for="subjectNLPLab">NLP Lab:</label>
+          <input type="text" id="subjectNLPLab" name="subjectNLPLab" required>
+        </div>
+        <div class="form-group">
+          <label for="subjectDALab">DA Lab:</label>
+          <input type="text" id="subjectDALab" name="subjectDALab" required>
+        </div>
+        <div class="form-group">
+          <button type="submit">Update Marks</button>
+        </div>
+      </form>
+      <div class="notification" id="updateMarksNotification"></div>
+    </div>
+
+    <!-- My Time Table Container -->
+    <div id="timeTableContainer" class="container">
+      <h2>My Time Table</h2>
+      <div class="form-group">
+        <button id="showTimeTableButton">Show Time Table</button>
+      </div>
+      <div id="timeTableList"></div>
+    </div>
+
+
+    <!-- My Info Container -->
+    <div id="infoContainer" class="container">
+      <h2>My Info</h2>
+      <div class="form-group">
+        <button id="showMyInfoButton">Show My Info</button>
+      </div>
+      <div id="facultyInfo"style="display: none; border: 1px solid #ddd; padding: 10px; margin-top: 10px;"></div>
+    </div>
+
+    <!-- Home Container -->
+    <div id="homeContainer" class="container">
+      <h2>Welcome to Hogwarts School & College Website!!!</h2>
+      <p>Explore our website to update marks, view your timetable, and check your personal information.</p>
+    </div>
+    
+    <footer>
+      <p>&copy; 2024 Hogwarts School & College. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {    
+        // Function to show notifications
+        function showNotification(selector, message, isSuccess) {
+            const notification = $(selector);
+            notification.text(message);
+            notification.removeClass('success error');
+            notification.addClass(isSuccess ? 'success' : 'error');
+            notification.show();
+            setTimeout(() => notification.hide(), 3000);
+        }
+
+        function clearForm(formId) {
+            $(formId).trigger("reset");
+        }
+    
+        // View My Info button clicked
+        $('#showMyInfoButton').click(function() {
+            $('#facultyInfo').toggle();
+            if ($('#facultyInfo').is(':visible')) {
+                let facultyId = $(this).data('facultyId'); // Retrieve stored faculty ID
+                $.get(`/faculty/${facultyId}`, function(data) {
+                    let userInfoHtml = `
+                        <h3>User Information</h3>
+                        <p><strong>ID:</strong> ${data.ID}</p>
+                        <p><strong>Name:</strong> ${data.Name}</p>
+                        <p><strong>Father Name:</strong> ${data.Father_Name}</p>
+                        <p><strong>Mobile Number:</strong> ${data.Mobile_Number}</p>
+                        <p><strong>Department Name:</strong> ${data.Department}</p>
+                        <p><strong>Salary:</strong> ${data.Salary}</p>
+                        <p><strong>Password:</strong> ${data.Password}</p>
+                        <p><strong>Role:</strong> ${data.role}</p>
+                    `;
+                    $('#facultyInfo').html(userInfoHtml);
+                }).fail(function() {
+                    $('#facultyInfo').html('<p>Error fetching user details.</p>');
+                });
+            } else {
+                $('#facultyInfo').html('');
+            }
+        });
+
+        $(document).ready(function () {
+            $('#updateMarksForm').submit(function (event) {
+                event.preventDefault(); // ⛔ Prevent default form submission (avoids page reload)
+        
+                const studentId = $('#studentId').val();
+                const subjectKRR = $('#subjectKRR').val();
+                const subjectNLP = $('#subjectNLP').val();
+                const subjectSTM = $('#subjectSTM').val();
+                const subjectIOT = $('#subjectIOT').val();
+                const subjectNLPLab = $('#subjectNLPLab').val();
+                const subjectDALab = $('#subjectDALab').val();
+        
+                $.ajax({
+                    url: '/faculty/updateMarks',  // Ensure this matches your server's route
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        studentId: studentId,
+                        subjectKRR: subjectKRR,
+                        subjectNLP: subjectNLP,
+                        subjectSTM: subjectSTM,
+                        subjectIOT: subjectIOT,
+                        subjectNLPLab: subjectNLPLab,
+                        subjectDALab: subjectDALab
+                    }),
+                    success: function (response) {
+                        $('#updateMarksNotification').text('Marks updated successfully').css('color', 'green');
+                        clearForm('#updateMarksForm');
+                        showNotification('#updateMarksNotification', 'Marks updated successfully!', true);
+                    },
+                    error: function (xhr) {
+                        $('#updateMarksNotification').text('Error updating marks: ' + xhr.responseText).css('color', 'red');
+                        showNotification('#updateMarksNotification', 'Error updating marks:',xhr.responseText, false);
+                        
+                    }
+                });
+            });
+        });
+        
+      // Sidebar Navigation
+      $('#updateStudentMarksBtn').click(function() {
+        $('#updateMarksContainer').show();
+        $('#timeTableContainer, #infoContainer, #homeContainer').hide();
+      });
+      $('#myTimeTableBtn').click(function() {
+        $('#timeTableContainer').show();
+        $('#updateMarksContainer, #infoContainer, #homeContainer').hide();
+      });
+      $('#myInfoBtn').click(function() {
+        $('#infoContainer').show();
+        $('#updateMarksContainer, #timeTableContainer, #homeContainer').hide();
+      });
+      $('#home').click(function() {
+        $('#homeContainer').show();
+        $('#updateMarksContainer, #timeTableContainer, #infoContainer').hide();
+      });
+      
+      // Navbar (Horizontal) Navigation
+      $('#home1').click(function() {
+        $('#homeContainer').show();
+        $('#updateMarksContainer, #timeTableContainer, #infoContainer').hide();
+      });
+      $('#navMyInfo').click(function() {
+        $('#infoContainer').show();
+        $('#updateMarksContainer, #timeTableContainer, #homeContainer').hide();
+      });
+      
+      // Show Time Table Content
+      $('#showTimeTableButton').click(function() {
+        $('#timeTableList').html('<p>Your timetable will be displayed here.</p>');
+      });
+      
+      // Show My Info Content
+      $('#showMyInfoButton').click(function() {
+        $('#infoList').html('<p>Your personal information will be displayed here.</p>');
+      });
+      
+      // Initially show Home Container
+      $('#homeContainer').show();
+    });
+  </script>
+</body>
+</html>
