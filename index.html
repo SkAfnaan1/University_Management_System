@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #a8a8a8;
+        }
+        .header {
+            background-color: #f89040;
+            color: #ffffff;
+            padding: 30px;
+            text-align: center;
+            font-weight: bold;
+            font: italic;
+        }
+        .options h2 {
+            text-align: center;
+            margin-bottom:20px;
+            margin-top: 0px;
+            padding: 1%;
+            color: #f89040;
+            background-color: rgb(224, 222, 222);
+            color: rgb(0, 0, 0);
+        }
+        .navbar-logo {
+            font-size: 24px;
+            font-weight: bold;
+          }
+        .navbar {
+            background-color: #000000;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+        .navbar-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            font-size: 22px;
+          }
+      
+          .navbar-links li {
+            margin-right: 20px;
+          }
+      
+          .navbar-links li a {
+            color: #fff;
+            text-decoration: none;
+          }
+          main {
+            max-width: 1000px;
+            margin: 2px 20px;
+            padding: 0 20px;
+        }
+        main p {
+            font-size: large;
+        }
+
+        .hero .h2{
+            max-width: 1000px;
+            align-content: center;
+            align-items: center;
+            margin: 2px auto;
+            padding: 10 20px;
+        }
+        .hero {
+            color: rgb(255, 0, 0);
+            padding: 1px 20px;
+            text-align: center;
+        }
+
+        .header {
+            background: url('public/css/img1.jpg') currentColor 45% 60%/cover;
+            font-size: larger;
+            font-weight: bold; /* Corrected font-weight syntax */
+            background-size: 1000px;
+            text-decoration: underline; /* Corrected text decoration for underline */
+            text-shadow: 2px 2px 4px #000000; /* Added dimensions to text-shadow */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Added dimensions and color with opacity to box-shadow */
+        }
+        
+
+        .header h1 {
+            font-size: 4em;
+            font-family: "Brush Script MT", cursive; 
+            font-style:italic; 
+            font-variant:normal; 
+            font-weight: 5; 
+            color:#000000;
+            text-shadow: 5px 5px white;
+        
+         }
+    
+        .hero h2 {
+            font-size: 2em;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+        }
+        
+        .navbar-links a:link{
+            color: white;
+        }
+        .navbar-links a:hover {
+            color: #2386f0;
+        }
+        .navbar-links a:active{
+            color: #3cb458;
+        }
+
+        .headimg{
+            align-items: center;
+            background-color: #f89040;
+        }
+        
+        section {
+            margin: 40px 0;
+        }
+        footer {
+            background-color: #000000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        footer p {
+            margin: 0;
+        }
+    </style>
+    <title>Hogwarts School & College</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="header">
+        <h1><u>Hogwarts School & College</u></h1>
+    </div>
+    <header class="navbar">
+        <div class="navbar-logo"></div>
+        <nav>
+          <ul class="navbar-links">
+            <li><a href="/"id="home1"> <i style="font-size:24px" class="fa">&#xf015;</i> Home</a></li>
+            <li><a href="admin/courses.html" class="user"> <i style="font-size:18px" class="fa">&#xf19d;</i> Courses</a></li>
+            <li><a href="admin/admissions.html" class="user"> <i style="font-size:18px" class="fa">&#xf549;</i> Admissions</a></li>
+            <li><a href="admin/user_login.html" class="user"> <i style="font-size:18px" class="fa">&#xf007;</i> Admin Login</a></li>
+            <li><a href="admin/user_login.html" class="user"> <i style="font-size:18px" class="fa">&#xf007;</i> Student Login</a></li>
+            <li><a href="admin/user_login.html" class="user"> <i style="font-size:18px" class="fa">&#xf007;</i> Faculty Login</a></li>
+            <li><a href="admin/contact.html" class="user"> <i style="font-size:18px" class="fa">&#xf2b9;</i> Contact</a></li>
+            <li><a href="admin/about.html" class="user">About</a></li>
+          </ul>
+        </nav>
+      </header>
+    <div class="options">
+        <h2><marquee width="100%" behavior="scroll" scrollamount="12"> <i style="font-size:18px" class="fa">&#9830; News : Harry Potter's Patronus Spotted Near Forbidden Forest.&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-size:18px" class="fa">&#9830; News : Mysterious Artifacts Found in Gryffindor Tower. &nbsp;&nbsp;&nbsp;&nbsp;<i style="font-size:18px" class="fa">&#9830; News : Restricted Section of Library Now Open. &nbsp;&nbsp;&nbsp;&nbsp;<i style="font-size:18px" class="fa">&#9830; News :Golden Snitch Cup: New Quidditch Event Announced.</marquee></h2>
+    </div>
+    <div class="hero">
+        <h2>Welcome to Hogwarts School & College</h2>
+        <p>Your future starts here</p>
+    </div>
+    <main>
+        <section class="about">
+            <h2>About Us</h2>
+            <p>Learn more about our history, mission, and values.</p>
+            <a href="admin/about.html">Read more</a>
+        </section>
+        <section class="courses">
+            <h2>Our Courses</h2>
+            <p>Explore the courses we offer to help you achieve your goals.</p>
+            <a href="admin/courses.html">Read more</a>
+        </section>
+        <section class="admissions">
+            <h2>Admissions</h2>
+            <p>Join our community of learners and leaders.</p>
+            <a href="admin/admissions.html">Read more</a>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Hogwarts School & College. All rights reserved.</p>
+    </footer>
+</body>
+</html>
